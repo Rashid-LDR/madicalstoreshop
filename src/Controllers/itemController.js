@@ -39,7 +39,7 @@ router.get('/get-item/:id',async (req,resp)=>{
     }
 })
 
-router.get('/get-all-items',(req,resp)=>{
+router.delete('/get-all-items',(req,resp)=>{
     resp.send("Get All items from DB");
 });
 
