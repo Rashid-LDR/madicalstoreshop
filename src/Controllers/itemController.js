@@ -1,20 +1,42 @@
 const express=require('express');
+require('mongoose');
 const itemModel=require("../Models/itemSchema");
 
 const router=express.Router();
 
 router.use(express.json());
 
-router.post('/insert',(req,resp)=>{
+router.post('/insert',async(req,resp)=>{
     console.log(req.body);
-    let item=new itemModel(req.body)
-    item.save();
-    resp.send("data inserted Model"+item);
+    try{
+        let item=new itemModel(req.body)
+        const savedata = await item.save();
+        resp.send(savedata);
+    }
+    catch(err){
+        resp.send(err);
+    }
+    
 });
-router.get('/get-items',(req,resp)=>{
-    let item=new itemModel.find("Oil");
-    console.log(item)
-    // resp.send("Get items from DB");
+router.get('/get-items',async(req,resp)=>{
+        
+    try{
+        const itemData=await itemModel.find();
+        resp.send(itemData);
+    }catch(err){
+        resp.send(err);
+    }
+})
+
+router.get('/get-item/:id',async (req,resp)=>{
+    const {id}=req.params;
+    try{
+        const singleitem= await itemModel.findById(id);
+        resp.send(singleitem);
+    }
+    catch(err){
+        resp.send(err);
+    }
 })
 
 router.get('/get-all-items',(req,resp)=>{
