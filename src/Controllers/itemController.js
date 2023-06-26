@@ -9,10 +9,12 @@ router.post('/insert',(req,resp)=>{
     console.log(req.body);
     let item=new itemModel(req.body)
     item.save();
-    resp.send("data inserted Model");
+    resp.send("data inserted Model"+item);
 });
 router.get('/get-items',(req,resp)=>{
-    resp.send("Get items from DB");
+    let item=new itemModel.find("Oil");
+    console.log(item)
+    // resp.send("Get items from DB");
 })
 
 router.get('/get-all-items',(req,resp)=>{
