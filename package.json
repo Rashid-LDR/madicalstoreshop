@@ -4,7 +4,7 @@
   "description": "backend of Madical Store shop using NodeJS and MongooseDB",
   "main": "index.js",
   "scripts": {
-    "start":"node src/index.js",
+    "start":"nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
