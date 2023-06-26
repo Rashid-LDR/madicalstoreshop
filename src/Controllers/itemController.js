@@ -39,6 +39,17 @@ router.get('/get-item/:id',async (req,resp)=>{
     }
 })
 
+router.patch('/update-item/:id',async (req,resp)=>{
+    const {id}=req.params;
+    try{
+        const updateitem= await itemModel.findByIdAndUpdate(id,req.body,{new:true});
+        resp.send(updateitem);
+    }
+    catch(err){
+        resp.send(err);
+    }
+})
+
 router.delete('/get-all-items',(req,resp)=>{
     resp.send("Get All items from DB");
 });
